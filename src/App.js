@@ -6,9 +6,9 @@ import Person from './Person/Person';
 class App extends Component {
   state = {
     persons : [
-      { name: "Phil", age: 22 },
-      { name: "Don", age: 21 },
-      { name: "Cad", age: 20 }
+      { id:"aef3",name: "Phil", age: 22 },
+      { id:"asdf2",name: "Don", age: 21 },
+      { id:"afdsa1",name: "Cad", age: 20 }
     ],
     otherState: "some value",
     showPersons: false
@@ -21,13 +21,24 @@ class App extends Component {
     this.setState({persons:persons}) 
   }
 
-  nameChangedHandler = (event) => {
+  nameChangedHandler = (event,id) => {
+    const personIndex = this.state.persons.findIndex(p => {
+      //findIndex goes through each element
+      return p.id === id
+    })
+
+    const person = {
+      //making a copy of the persons state for the specific person we want to change
+      ...this.state.persons[personIndex]
+    }
+
+    person.name = event.target.value
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person
+
     this.setState({
-      persons : [
-        { name: "Phil", age: 22 },
-        { name: event.target.value, age: 21 },
-        { name: "Cad", age: 2 }
-      ]
+      persons : persons
     })
   }
 
@@ -52,7 +63,9 @@ class App extends Component {
             return <Person 
               click={() => this.deletePersonHandler(index)}
               name={person.name} 
-              age={person.age} />
+              age={person.age} 
+              key={person.id}
+              changed={(event) => this.nameChangedHandler(event,person.id)}/>
           })}
           {/* <Person 
             name={this.state.persons[0].name} 
