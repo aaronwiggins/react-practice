@@ -49,7 +49,8 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color:'white',
       font:'inherit',
       border:'1px solid blue',
       padding:'8px',
@@ -67,22 +68,17 @@ class App extends Component {
               key={person.id}
               changed={(event) => this.nameChangedHandler(event,person.id)}/>
           })}
-          {/* <Person 
-            name={this.state.persons[0].name} 
-            age={this.state.persons[0].age} 
-          />
-          <Person 
-            name={this.state.persons[1].name} 
-            age={this.state.persons[1].age}
-            click={this.switchNameHandler.bind(this, "changed!")} 
-            changed={this.nameChangedHandler}>
-            My hobbies: Racing
-          </Person>
-          <Person 
-            name={this.state.persons[2].name} 
-            age={this.state.persons[2].age} />  */}
+          
         </div>
-      )
+      );
+      style.backgroundColor = 'red';
+    }
+    const classes = [];
+    if (this.state.persons.length <= 2){
+      classes.push('red');
+    }
+    if (this.state.persons.length <= 1){
+      classes.push('bold');
     }
     return (
       <div className="App">
@@ -91,7 +87,7 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          To get started, edit <code className={classes.join(' ')}>src/App.js</code> and save to reload.
         </p>
         <button 
           style={style} 
