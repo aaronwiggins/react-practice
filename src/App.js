@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import classes from './App.css';
 import Person from './Person/Person';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
   state = {
@@ -48,31 +49,26 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color:'white',
-      font:'inherit',
-      border:'1px solid blue',
-      padding:'8px',
-      cursor:'pointer',
-
-    };
+    
     let persons = null;
+    let btnClass = '';
+
     if (this.state.showPersons){
       persons = (
         <div>
           {this.state.persons.map((person,index) => {
-            return <Person 
-              click={() => this.deletePersonHandler(index)}
-              name={person.name} 
-              age={person.age} 
-              key={person.id}
-              changed={(event) => this.nameChangedHandler(event,person.id)}/>
+            return <ErrorBoundary key={person.id}>
+              <Person 
+                click={() => this.deletePersonHandler(index)}
+                name={person.name} 
+                age={person.age} 
+                changed={(event) => this.nameChangedHandler(event,person.id)}/>
+            </ErrorBoundary>
           })}
           
         </div>
       );
-      style.backgroundColor = 'red';
+      btnClass = classes.Red;
     }
     const assignedClasses = [];
     if (this.state.persons.length <= 2){
@@ -84,14 +80,14 @@ class App extends Component {
     return (
       <div className={classes.App}>
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">
           To get started, edit <code className={assignedClasses.join(' ')}>src/App.js</code> and save to reload.
         </p>
-        <button 
-          style={style} 
+        <button
+          className={btnClass} 
           onClick={this.togglePersonsHandler}>Toggle Persons
         </button>
             {persons}
