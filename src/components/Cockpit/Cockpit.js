@@ -5,7 +5,6 @@ const cockpit = (props) => {
     if (props.showPersons){
         btnClass = classes.Red;    
     }
-    
 
     const assignedClasses = [];
     if (props.persons.length <= 2){
@@ -20,6 +19,7 @@ const cockpit = (props) => {
             <header className="App-header">
             {/* <img src={logo} className="App-logo" alt="logo" /> */}
             <h1 className="App-title">Welcome to React</h1>
+            <h3>{props.appTitle}</h3>
             </header>
             <p className="App-intro">
             To get started, edit <code className={assignedClasses.join(' ')}>src/App.js</code> and save to reload.
