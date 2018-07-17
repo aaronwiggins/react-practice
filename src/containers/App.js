@@ -7,15 +7,34 @@ import Persons from '../components/Persons/Persons';
 // import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
-  state = {
-    persons : [
-      { id:"aef3",name: "Phil", age: 22 },
-      { id:"asdf2",name: "Don", age: 21 },
-      { id:"afdsa1",name: "Cad", age: 20 }
-    ],
-    otherState: "some value",
-    showPersons: false
+  constructor(props){
+    super(props);
+    this.state = {
+      persons : [
+        { id:"aef3",name: "Phil", age: 22 },
+        { id:"asdf2",name: "Don", age: 21 },
+        { id:"afdsa1",name: "Cad", age: 20 }
+      ],
+      otherState: "some value",
+      showPersons: false
+    }
+    console.log('[App.js] Inside Constructor', props)
   }
+  componentWillMount(){
+    console.log('[App.js] inside componentWillMount');
+  }
+  componentDidMount(){
+    console.log('[App.js] inside componentDidMount')
+  }
+  // state = {
+  //   persons : [
+  //     { id:"aef3",name: "Phil", age: 22 },
+  //     { id:"asdf2",name: "Don", age: 21 },
+  //     { id:"afdsa1",name: "Cad", age: 20 }
+  //   ],
+  //   otherState: "some value",
+  //   showPersons: false
+  // }
   
   deletePersonHandler = (personIndex) => {
     // const persons = this.state.persons.slice();//slice (w/ no args) copies array and makes new one
@@ -51,7 +70,7 @@ class App extends Component {
   }
 
   render() {
-    
+    console.log('[App.js] inside Render')
     let persons = null;
 
     if (this.state.showPersons){
