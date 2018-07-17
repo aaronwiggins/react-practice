@@ -23,7 +23,6 @@ class Persons extends Component {
     }
     componentDidUpdate(){
         console.log('UPDATES Perons.js] Inside componentDidUpdate');
-
     }
     render(){
         console.log('[Perons.js] inside Render');
