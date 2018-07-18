@@ -3,6 +3,7 @@ import React, { PureComponent } from 'react';
 import classes from './App.css';
 import Cockpit from '../components/Cockpit/Cockpit';
 import Persons from '../components/Persons/Persons';
+import WithClass from '../hoc/withClass';
 
 // import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
@@ -97,7 +98,7 @@ componentDidUpdate(){
     }
 
     return (
-      <div className={classes.App}>
+      <WithClass classes={classes.App}>
           <button
             onClick={()=>{this.setState({showPersons:true})}}>Show Persons</button>
           <Cockpit 
@@ -106,7 +107,7 @@ componentDidUpdate(){
             persons={this.state.persons}
             clicked={this.togglePersonsHandler}/>
           {persons}
-      </div>
+      </WithClass>
     );
     // return React.createElement('div',{className:'App'},React.createElement('h1',null,'working now'))
   }
