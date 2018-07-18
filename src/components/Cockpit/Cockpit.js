@@ -1,9 +1,10 @@
 import React from 'react';
 import classes from './Cockpit.css';
+import Aux from '../../hoc/Aux';
 const cockpit = (props) => {
-    let btnClass = '';
+    let btnClass = classes.Button;
     if (props.showPersons){
-        btnClass = classes.Red;    
+        btnClass = [classes.Button,classes.Red].join(' ');
     }
 
     const assignedClasses = [];
@@ -15,12 +16,9 @@ const cockpit = (props) => {
     }
 
     return(
-        <div className={classes.Cockpit}>
-            <header className="App-header">
+        <Aux>
             {/* <img src={logo} className="App-logo" alt="logo" /> */}
-            <h1 className="App-title">Welcome to React</h1>
             <h3>{props.appTitle}</h3>
-            </header>
             <p className="App-intro">
             To get started, edit <code className={assignedClasses.join(' ')}>src/App.js</code> and save to reload.
             </p>
@@ -28,7 +26,7 @@ const cockpit = (props) => {
             className={btnClass} 
             onClick={props.clicked}>Toggle Persons
             </button>
-        </div>
+        </Aux>
     );
 }
 export default cockpit;
