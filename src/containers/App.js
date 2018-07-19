@@ -18,7 +18,8 @@ class App extends PureComponent {
         { id:"afdsa1",name: "Cad", age: 20 }
       ],
       otherState: "some value",
-      showPersons: false
+      showPersons: false,
+      toggleClicked:0
     }
     console.log('[App.js] Inside Constructor', props)
   }
@@ -82,7 +83,12 @@ componentDidUpdate(){
 
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
-    this.setState({showPersons: !doesShow });
+    this.setState( (prevState,props)=>{
+      return{
+        showPersons: !doesShow, 
+        toggleClicked: prevState.toggleClicked+1 
+      }   
+    });
   }
 
   render() {
