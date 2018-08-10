@@ -19,7 +19,8 @@ class App extends PureComponent {
       ],
       otherState: "some value",
       showPersons: false,
-      toggleClicked:0
+      toggleClicked:0,
+      authenticated:false
     }
     console.log('[App.js] Inside Constructor', props)
   }
@@ -91,6 +92,10 @@ componentDidUpdate(){
     });
   }
 
+  loginHandler = () => {
+    this.setState({authenticated:true});
+  }
+
   render() {
     console.log('[App.js] inside Render')
     let persons = null;
@@ -100,7 +105,8 @@ componentDidUpdate(){
           <Persons 
             persons={this.state.persons}
             clicked={this.deletePersonHandler}
-            changed={this.nameChangedHandler} />        
+            changed={this.nameChangedHandler} 
+            isAuthenticated={this.state.authenticated}/>        
       );
     }
 
@@ -112,6 +118,7 @@ componentDidUpdate(){
             appTitle={this.props.title}
             showPersons={this.state.showPersons}
             persons={this.state.persons}
+            login={this.loginHandler}
             clicked={this.togglePersonsHandler}/>
           {persons}
       </Aux>
