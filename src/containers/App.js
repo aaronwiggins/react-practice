@@ -6,6 +6,8 @@ import Persons from '../components/Persons/Persons';
 import Aux from '../hoc/Aux';
 import withClass from '../hoc/withClass';
 
+export const AuthContext = React.createContext(false);
+
 // import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends PureComponent {
@@ -105,8 +107,7 @@ componentDidUpdate(){
           <Persons 
             persons={this.state.persons}
             clicked={this.deletePersonHandler}
-            changed={this.nameChangedHandler} 
-            isAuthenticated={this.state.authenticated}/>        
+            changed={this.nameChangedHandler} />        
       );
     }
 
@@ -120,7 +121,7 @@ componentDidUpdate(){
             persons={this.state.persons}
             login={this.loginHandler}
             clicked={this.togglePersonsHandler}/>
-          {persons}
+            <AuthContext.Provider value={this.state.authenticated}>{persons}</AuthContext.Provider>
       </Aux>
     );
     // return React.createElement('div',{className:'App'},React.createElement('h1',null,'working now'))
