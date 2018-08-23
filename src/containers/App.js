@@ -46,6 +46,19 @@ componentDidUpdate(){
 
 }
 
+static getDerivedStateFromProps(nextProps, prevState){
+  //executed when props are updated
+  console.log('[UPDATE App.js] inside getDerivedStateFromProps', 
+  nextProps, 
+  prevState);
+  return prevState
+}
+getSnapshotBeforeUpdate(){
+  //snapshot of DOM right before it changes
+  console.log('[UPDATE App.js] inside getSnapshotBeforeUpdate'); 
+
+}
+
   // state = {
   //   persons : [
   //     { id:"aef3",name: "Phil", age: 22 },
